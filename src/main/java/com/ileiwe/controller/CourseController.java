@@ -1,0 +1,50 @@
+package com.ileiwe.controller;
+
+import com.ileiwe.data.dto.CourseDto;
+import com.ileiwe.data.dto.InstructorPartyDto;
+import com.ileiwe.data.model.Course;
+import com.ileiwe.service.course.CourseService;
+import com.ileiwe.service.course.CourseServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/course")
+public class CourseController {
+
+    @Autowired
+    CourseService courseService;
+
+    @PostMapping("/{id}/add")
+    public Course createCourse(@RequestBody CourseDto courseDto,@PathVariable("id") Long id){
+        return courseService.create(courseDto, id);
+    }
+    @GetMapping("/{id}")
+    public Course viewCourse (@PathVariable("id") Long id){
+        return courseService.view(id);
+    }
+    @GetMapping("/")
+    public List<Course> viewCourses(){
+        return courseService.view();
+    }
+
+    @PatchMapping("/{id}")
+    public Course update(@RequestBody CourseDto courseDto, @PathVariable("id") Long id){
+        return courseService.update(id, courseDto);
+    }
+//    @PostMapping("/instructor")
+//    public ResponseEntity<?>
+//    registerAsInstructor(@RequestBody
+//                                 InstructorPartyDto
+//                                 instructorPartyDto){
+//        log.info("instructor object --> {}", instructorPartyDto);
+//        return
+//                ResponseEntity.ok()
+//                        .body(instructorService.save(instructorPartyDto));
+//    }
+//
+
+}

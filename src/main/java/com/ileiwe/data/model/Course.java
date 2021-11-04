@@ -1,6 +1,8 @@
 package com.ileiwe.data.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -17,6 +19,8 @@ import java.util.List;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Course {
 
     @Id
@@ -36,7 +40,7 @@ public class Course {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
     private boolean isPublished;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Instructor instructor;
     @ManyToMany
     private List<Student> students;
