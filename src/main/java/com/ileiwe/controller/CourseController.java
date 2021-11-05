@@ -1,9 +1,8 @@
 package com.ileiwe.controller;
 
 import com.ileiwe.data.dto.CourseDto;
-import com.ileiwe.data.dto.InstructorPartyDto;
+
 import com.ileiwe.data.model.Course;
-import com.ileiwe.service.course.CourseService;
 import com.ileiwe.service.course.CourseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,7 @@ import java.util.List;
 public class CourseController {
 
     @Autowired
-    CourseService courseService;
+    CourseServiceImpl courseService;
 
     @PostMapping("/{id}/add")
     public Course createCourse(@RequestBody CourseDto courseDto,@PathVariable("id") Long id){
@@ -35,16 +34,13 @@ public class CourseController {
     public Course update(@RequestBody CourseDto courseDto, @PathVariable("id") Long id){
         return courseService.update(id, courseDto);
     }
-//    @PostMapping("/instructor")
-//    public ResponseEntity<?>
-//    registerAsInstructor(@RequestBody
-//                                 InstructorPartyDto
-//                                 instructorPartyDto){
-//        log.info("instructor object --> {}", instructorPartyDto);
-//        return
-//                ResponseEntity.ok()
-//                        .body(instructorService.save(instructorPartyDto));
-//    }
-//
+    @DeleteMapping("/{id}")
+
+    public ResponseEntity <?> deleteCourse(@PathVariable  Long id){
+        courseService.delete(id);
+        return ResponseEntity.noContent().build();
+
+    }
+
 
 }

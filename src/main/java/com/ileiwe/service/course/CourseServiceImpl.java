@@ -7,9 +7,7 @@ import com.ileiwe.data.model.Instructor;
 import com.ileiwe.data.repository.CourseRepository;
 import com.ileiwe.data.repository.InstructorRepository;
 import com.ileiwe.service.mapper.CourseMapper;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +39,6 @@ public class CourseServiceImpl implements CourseService {
             log.info("course Dt0 before saving {}", courseDto);
         log.info("Instructor before saving {}", instructor);
 
-
         Course course = new Course();
             course.setTitle(courseDto.getTitle());
             course.setDescription(courseDto.getDescription());
@@ -56,17 +53,13 @@ public class CourseServiceImpl implements CourseService {
         log.info("Instructor after saving {}", instructor);
 
         return course;
-
-
-
-
         }
 
     @Override
     public Course update(Long id, CourseDto courseDto) {
 
         if (courseDto == null) {
-            throw new NullPointerException("Course is not present");
+            throw new NullPointerException("CourseDto cannot be null");
         }
             Optional<Course> result = courseRepository.findById(id);
             if (result.isPresent()) {
@@ -75,41 +68,16 @@ public class CourseServiceImpl implements CourseService {
                 return courseRepository.save(course);
             } else throw new CourseDoesNotExistException("Wrong course");
 
-
         }
 
 
-
-//    Optional<Product> result = productRepository.findById(id);
-//        if(result.isPresent()){
-//        Product product = result.get();
-//        productMapper.mapDtoToProduct(productDto, product);
-//        return productRepository.save(product);
-
-//    public void updateLocation(String id, Location location) {
-//
-//        for(int i = 0; i < locations.size(); i++) {
-//
-//            Location l = locations.get(i);
-//
-//            if (l.getId().equals(id)) {
-//                locations.set(i, location);
-//            }
-
-    @Override
-    public void update(String title) {
-
-    }
-
     @Override
     public void delete(Long id) {
+        courseRepository.deleteById(id);
 
     }
 
-    @Override
-    public void delete(String delete) {
 
-    }
 
     @Override
     public Course view(Long id) {
@@ -124,6 +92,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public void publishCourse(Long id) {
+//        Optional<Long>
 
     }
 }

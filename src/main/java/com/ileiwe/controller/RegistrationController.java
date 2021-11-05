@@ -1,7 +1,9 @@
 package com.ileiwe.controller;
 
 import com.ileiwe.data.dto.InstructorPartyDto;
+import com.ileiwe.data.dto.StudentDto;
 import com.ileiwe.service.instructor.InstructorServiceImpl;
+import com.ileiwe.service.student.StudentServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,9 @@ public class RegistrationController {
     @Autowired
     InstructorServiceImpl instructorService;
 
+    @Autowired
+    StudentServiceImpl studentService;
+
     @PostMapping("/instructor")
     public ResponseEntity<?>
         registerAsInstructor(@RequestBody
@@ -33,5 +38,16 @@ public class RegistrationController {
        return
            ResponseEntity.ok()
         .body(instructorService.save(instructorPartyDto));
+    }
+
+    @PostMapping("/student")
+    public ResponseEntity<?>
+    registerAsStudent(@RequestBody
+                                 StudentDto
+                                 studentDto){
+        log.info("instructor object --> {}", studentDto);
+        return
+                ResponseEntity.ok()
+                        .body(studentService.createStudent(studentDto));
     }
 }

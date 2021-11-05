@@ -28,8 +28,6 @@ public class  InstructorServiceImpl implements InstructorService{
 
     @Override
     public Instructor save(InstructorPartyDto instructorDto) {
-
-
         if(instructorDto == null){
             throw new IllegalArgumentException("Instructor cannot be null");
         }

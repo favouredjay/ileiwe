@@ -7,11 +7,12 @@ import org.mapstruct.BeanMapping;
 
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
+import org.springframework.context.annotation.Bean;
+
 
 @Mapper(componentModel = "spring")
-public interface CourseMapper {
 
+public interface CourseMapper {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void mapDtoToCourse(CourseDto courseDto, @MappingTarget Course course);
-
 }

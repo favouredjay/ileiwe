@@ -1,6 +1,10 @@
 package com.ileiwe.data.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,8 +17,12 @@ import java.util.List;
  * inside the package - com.ileiwe.data.model
  */
 
+@Slf4j
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Student {
 
     @Id
@@ -25,10 +33,10 @@ public class Student {
     private LocalDate dob;
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private LearningParty learningParty;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Course> enrolledCourses;
 
 }
