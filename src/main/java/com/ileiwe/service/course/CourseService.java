@@ -11,7 +11,7 @@ public interface CourseService {
     void delete(Long id);
     Course view (Long id);
     List<Course> view();
-    void publishCourse(Long id);
+    Course publishCourse(Long courseId, Long instructorId);
 
 
 

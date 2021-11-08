@@ -8,8 +8,9 @@ import java.util.List;
 
 public interface StudentService {
     Student createStudent(StudentDto studentDto);
-    Student enrollForCourse(Long id);
-    Student unEnrollForCourse(Long id);
-    Student searchForStudent(String name);
+    Student enrollForCourse(Long id, Long courseId);
+    Student unEnrollForCourse(Long id, Long courseId);
+    Student searchForStudent(Long id);
     List<Course> getMyCourse(Long id);
+    Student enableStudent (Long id);
 }

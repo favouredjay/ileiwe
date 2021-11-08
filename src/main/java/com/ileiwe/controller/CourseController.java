@@ -40,6 +40,11 @@ public class CourseController {
         courseService.delete(id);
         return ResponseEntity.noContent().build();
 
+
+    }
+    @PutMapping("/publish/{id}/{instructorId}")
+    public Course publish(@PathVariable Long id,@PathVariable Long instructorId){
+        return courseService.publishCourse(id, instructorId);
     }
 
 

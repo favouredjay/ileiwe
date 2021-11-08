@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,9 +91,30 @@ public class CourseServiceImpl implements CourseService {
     }
 
 
+
     @Override
-    public void publishCourse(Long id) {
+    public Course publishCourse(Long courseId, Long instructorId) {
+        Course course = courseRepository.findById(courseId).orElse(null);
+        Instructor instructor = instructorRepository.findById(instructorId).orElse(null);
+
+        if(course == null || instructor == null) {
+            throw new NullPointerException("Cannot be null");
+        }
+            if(!course.isPublished()) {
+                course.setPublished(true);
+                course.setDatePublished(LocalDateTime.now());
+            }
+            else if(course.isPublished()) {
+                course.setPublished(false);
+            }
+
+
+
+
+
+return courseRepository.save(course);
+       }
 //        Optional<Long>
 
     }
-}
+

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author oluwatobi
  * @version 1.0
@@ -43,5 +45,15 @@ public class  InstructorServiceImpl implements InstructorService{
                 .learningParty(learningParty).build();
 
        return instructorRepository.save(instructor);
+    }
+
+    @Override
+    public Instructor search(Long id) {
+        return instructorRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Instructor> search() {
+        return instructorRepository.findAll();
     }
 }

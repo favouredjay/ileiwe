@@ -3,6 +3,8 @@ package com.ileiwe.service.instructor;
 import com.ileiwe.data.dto.InstructorPartyDto;
 import com.ileiwe.data.model.Instructor;
 
+import java.util.List;
+
 /**
  * @author oluwatobi
  * @version 1.0
@@ -11,5 +13,7 @@ import com.ileiwe.data.model.Instructor;
  */
 public interface InstructorService {
     Instructor save(InstructorPartyDto dto);
+    Instructor search (Long id);
+    List<Instructor> search();
 
 }

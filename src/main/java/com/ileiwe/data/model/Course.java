@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,4 +45,17 @@ public class Course {
     private Instructor instructor;
     @ManyToMany
     private List<Student> students;
+
+    public void addStudent(Student student) {
+        if(students == null){
+            students = new ArrayList<>();
+        }
+        for(Student student1: students){
+            if(student.getId().equals(student1.getId())){
+                return;
+            }
+        }
+        students.add(student);
+    }
+
 }
